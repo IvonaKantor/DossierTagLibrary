@@ -7,5 +7,8 @@ import javax.servlet.jsp.tagext.BodyContent;
 import java.io.IOException;
 
 public class DossierTag extends BodyTagSupport {
+    @Override
+    public int doAfterBody() throws JspException {
 
+    }
 }
