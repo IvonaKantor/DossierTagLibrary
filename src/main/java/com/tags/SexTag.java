@@ -6,5 +6,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 public class SexTag extends SimpleTagSupport {
+    @Override
+    public void doTag() throws JspException, IOException{
 
 }
