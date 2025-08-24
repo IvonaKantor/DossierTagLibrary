@@ -2,22 +2,13 @@ package com.tags;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.tagext.SimpleTagSupport;
 import javax.servlet.jsp.tagext.BodyContent;
 import java.io.IOException;
 
-public class DossierTag extends BodyTagSupport {
+public class DossierTag extends SimpleTagSupport {
     @Override
-    public int doAfterBody() throws JspException {
-        try{
-            BodyContent bc = getBodyContent();
-            String body = bc.getString();
-            JspWriter out = bc.getEnclosingWriter();
+    public void doTag() throws JspException, IOException {
 
-            out.print("<form method='POST'>" + body + "</form>");
-        }catch(IOException e){
-            throw new JspException(e)
-        }
-        return SKIP_BODY;
     }
 }
