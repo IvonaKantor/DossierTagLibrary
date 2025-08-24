@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="my" uri="/WEB-INF/tags.tld" %>
 
 <!DOCTYPE html>
