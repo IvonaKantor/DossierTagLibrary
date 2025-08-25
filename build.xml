@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DossierTagLibrary" default="deploy-local" basedir=".">
+
+    <property name="webapp.name" value="DossierTagLibrary"/>
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="web" location="web"/>
+    <property name="server" location="C:\Program Files\Apache Software Foundation\Tomcat 11.0"/>
+    <property name="lib.dir" location="lib"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="*.jar"/>
+        <fileset dir="${server}/lib" includes="*.jar"/>
+    </path>
+
+    <target name="prepare">
+        <mkdir dir="${server}/webapps/${webapp.name}"/>
+        <mkdir dir="${server}/webapps/${webapp.name}/WEB-INF"/>
+        <mkdir dir="${server}/webapps/${webapp.name}/WEB-INF/classes"/>
+        <mkdir dir="${server}/webapps/${webapp.name}/WEB-INF/lib"/>
+    </target>
+
+    <target name="compile" depends="prepare" description="code compile">
+        <javac srcdir="${src}/main/java"
+               destdir="${server}/webapps/${webapp.name}/WEB-INF/classes"
+               classpathref="classpath"
+               includeantruntime="false"/>
+
+        <copy file="${web}/WEB-INF/tags.tld"
+              todir="${server}/webapps/${webapp.name}/WEB-INF"/>
+    </target>
+
+    <target name="deploy-local" depends="compile" description="local server">
+        <copy todir="${server}/webapps/${webapp.name}">
+            <fileset dir="${web}">
+                <include name="*.jsp"/>
+                <include name="*.html"/>
+                <include name="WEB-INF/web.xml"/>
+                <include name="WEB-INF/tags.tld"/>
+            </fileset>
+        </copy>
+
+        <copy todir="${server}/webapps/${webapp.name}/WEB-INF/lib">
+            <fileset dir="${lib.dir}">
+                <include name="*.jar"/>
+            </fileset>
+        </copy>
+
+        <copy todir="${server}/webapps/${webapp.name}">
+            <fileset dir="${web}" excludes="WEB-INF/"/>
+        </copy>
+    </target>
+
+    <target name="clean" description="Clean the project">
+        <delete dir="${build}"/>
+        <delete dir="${server}/webapps/${webapp.name}"/>
+    </target>
+
+</project>
