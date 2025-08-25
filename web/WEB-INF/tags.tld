@@ -5,13 +5,13 @@
         version="2.1">
 
     <tlib-version>1.0</tlib-version>
-    <short-name>formTags</short-name>
+    <short-name>dossier</short-name>
     <uri>/WEB-INF/tags.tld</uri>
 
     <tag>
         <name>dossier</name>
         <tag-class>com.tags.DossierTag</tag-class>
-        <body-content>scriptless</body-content>
+        <body-content>JSP</body-content>
     </tag>
 
     <tag>
